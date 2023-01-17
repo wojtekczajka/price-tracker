@@ -9,12 +9,38 @@ require_once 'db/conn.php';
     <h1 class="header-title">PRICE TRACKER</h1>
     <h2 class="header-subtitle">A place where you can monitor popular product price changes over the years</h2>
     <div class="button-container">
-        <a href="log_in.php">
+
+        <?php
+        session_start();
+
+        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+            echo '<a href="scripts/log_out.php">
+                    <button class="login-button">   Log Out   </button>
+                  </a>
+                  <a href="scripts/log_out.php">
+                    <button class="login-button">Your Products</button>
+                  </a>';
+                  if ($_SESSION["isadmin"] == true) {
+                echo '<a href="scripts/log_out.php">
+                            <button class="login-button"> Admin Panel </button>
+                      </a>';
+                  }
+        } else {
+            echo '<a href="log_in.php">
+                    <button class="login-button">    Login    </button>
+                  </a>
+                  <a href="sign_up.php">
+                    <button class="signup-button">   Sign Up   </button>
+                  </a>';
+        }
+        ?>
+
+        <!-- <a href="log_in.php">
             <button class="login-button">Login</button>
         </a>
         <a href="sign_up.php">
             <button class="signup-button">Sign Up</button>
-        </a>
+        </a> -->
     </div>
 </div>
 
@@ -54,7 +80,7 @@ require_once 'db/conn.php';
         <form>
             <textarea id="new-comment" placeholder="add a comment"></textarea>
             <div class="submit-container">
-                    <button type="submit">Submit</button>
+                <button type="submit">Submit</button>
             </div>
         </form>
     </div>
@@ -73,7 +99,7 @@ require_once 'db/conn.php';
         <form>
             <textarea id="new-comment" placeholder="add a comment"></textarea>
             <div class="submit-container">
-                    <button type="submit">Submit</button>
+                <button type="submit">Submit</button>
             </div>
         </form>
     </div>

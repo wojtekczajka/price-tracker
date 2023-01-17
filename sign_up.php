@@ -4,7 +4,7 @@
     require_once 'db/conn.php';
 ?>
 
-<form class="signup-form" action="success.php" method="post">
+<form class="signup-form" action="register_success.php" method="post">
     <h2 class="form-title">Sign up for price-tracker</h2>
     <div class="form-group">
         <input type="text" id="username" name="username" placeholder="Username" required>

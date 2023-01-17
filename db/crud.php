@@ -17,7 +17,8 @@ class crud
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             $stmt->bindparam(':username', $username);
-            $stmt->bindparam(':email', $email);;
+            $stmt->bindparam(':email', $email);
+            ;
             $stmt->bindparam(':password', $hashed_password);
 
             $stmt->execute();
@@ -28,6 +29,26 @@ class crud
             return false;
         }
 
+    }
+
+    public function find_user($username, $password)
+    {
+        try {
+            $sql = "SELECT user_id, username, password, is_admin FROM users WHERE username = :username";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindparam(':username', $username);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($user && password_verify($password, $user['password'])) {
+                return $user;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
 }
 ?>
