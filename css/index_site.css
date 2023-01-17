@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+body {
+    background-color: #222222;
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+    color: #ccc;
+}
+
+.top-section {
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-direction: column
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    border-top: 2px solid #ccc;
+}
+
+.product-box {
+    margin-bottom: 5px;
+
+    background-color: #292828;
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 25px;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+}
+
+.product-name {
+    text-align: center;
+}
+
+.plot-container {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.plot-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #e9ecef;
+}
+
+.comments-container {
+    width: 100%;
+}
+
+.comments {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: center;
+
+}
+
+label[for='new-comment'] {
+    margin-right: 10px;
+    font-size: 0.9rem;
+}
+
+textarea#new-comment {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    resize: none;
+}
+
+.submit-container {
+    display: flex;
+    justify-content: center;
+}
+
+button[type='submit'] {
+    border: 1px solid #ced4da;
+    padding: 15px;
+    background-color: #292828;
+    color: #ccc;
+    border-radius: 1em;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 13vw;
+    transition: background-color 0.5s ease-in-out;
+    background-color: #292828;
+    color: #ccc;
+}
+
+button[type='submit']:hover {
+    background-color: #8b8787;
+    color: black;
+}
+
+.submit-container button {
+    margin: auto;
+}
+
+.header-title {
+    align-self: center;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.button-container {
+    align-self: flex-end;
+    text-align: right;
+}
+
+.login-button,
+.signup-button {
+    padding: 8px 16px;
+    margin-left: 10px;
+
+    padding: 15px;
+    background-color: #ccc;
+    color: #292828;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 5vw;
+
+    transition: background-color 0.5s ease-in-out;
+    background-color: #292828;
+    color: #ccc;
+}
+
+.login-button:hover,
+.signup-button:hover {
+    background-color: #8b8787;
+    color: black;
+}
+
+.header-subtitle {
+    align-self: flex-start;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.header-title,
+.header-subtitle {
+    color: #ccc;
+}
+
+@keyframes rocket-flight {
+    0% {
+        transform: translateX(calc(-100vw + 20px)) scaleX(1);
+    }
+
+    100% {
+        transform: translateX(calc(100vw - 20px)) scaleX(-1);
+    }
+}
+
+.rocket {
+    animation: rocket-flight 15s linear 2s infinite alternate;
+    animation-fill-mode: forwards;
+}

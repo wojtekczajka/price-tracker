@@ -1,11 +1,11 @@
 <?php
-    $title = 'success';
-    require_once 'includes/header.php';
-    require_once 'db/conn.php';
+$title = 'success';
+require_once 'includes/header.php';
+require_once 'db/conn.php';
 
 if (isset($_POST['submit'])) {
-    
-    $username = $_POST['username'];  
+
+    $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -13,14 +13,12 @@ if (isset($_POST['submit'])) {
 
     if ($is_success) {
         echo 'you have been registered';
-    }
-    else {
+    } else {
         echo 'there was some error';
     }
-}
-else {
+} else {
     echo 'submit not set :(';
-} 
+}
 ?>
 
 <?php require_once 'includes/footer.php'; ?>
