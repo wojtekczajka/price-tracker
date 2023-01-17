@@ -17,4 +17,4 @@ require_once 'db/conn.php';
     </div>
 </form>
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once 'includes/footer.php'; ?> 

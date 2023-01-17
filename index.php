@@ -2,45 +2,46 @@
 $title = 'price-tracker';
 require_once 'includes/header-main.php';
 require_once 'db/conn.php';
-?>
 
+$loggedin = false;
+$isadmin = false;
+$logout_button = '';
+$your_product_button = '';
+$admin_panel_button = '';
+$login_button = '<a href="log_in.php">
+                    <button class="login-button">    Login    </button>
+                  </a>';
+$signup_button = '<a href="sign_up.php">
+                    <button class="signup-button">   Sign Up   </button>
+                  </a>';
+
+session_start();
+
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+    $loggedin = true;
+    $login_button = '';
+    $signup_button = '';
+    $logout_button = '<a href="scripts/log_out.php">
+                        <button class="login-button">   Log Out   </button>
+                      </a>';
+    $your_product_button = '<a href="scripts/log_out.php">
+                                <button class="login-button">Your Products</button>
+                              </a>';
+    if ($_SESSION["isadmin"] == true) {
+        $isadmin = true;
+        $admin_panel_button = '<a href="scripts/log_out.php">
+                                    <button class="login-button"> Admin Panel </button>
+                              </a>';
+    }
+}
+
+?>
 
 <div class="top-section">
     <h1 class="header-title">PRICE TRACKER</h1>
     <h2 class="header-subtitle">A place where you can monitor popular product price changes over the years</h2>
     <div class="button-container">
-
-        <?php
-        session_start();
-
-        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
-            echo '<a href="scripts/log_out.php">
-                    <button class="login-button">   Log Out   </button>
-                  </a>
-                  <a href="scripts/log_out.php">
-                    <button class="login-button">Your Products</button>
-                  </a>';
-                  if ($_SESSION["isadmin"] == true) {
-                echo '<a href="scripts/log_out.php">
-                            <button class="login-button"> Admin Panel </button>
-                      </a>';
-                  }
-        } else {
-            echo '<a href="log_in.php">
-                    <button class="login-button">    Login    </button>
-                  </a>
-                  <a href="sign_up.php">
-                    <button class="signup-button">   Sign Up   </button>
-                  </a>';
-        }
-        ?>
-
-        <!-- <a href="log_in.php">
-            <button class="login-button">Login</button>
-        </a>
-        <a href="sign_up.php">
-            <button class="signup-button">Sign Up</button>
-        </a> -->
+        <?php echo $logout_button . $your_product_button . $admin_panel_button . $login_button . $signup_button; ?>
     </div>
 </div>
 
