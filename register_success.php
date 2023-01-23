@@ -12,12 +12,12 @@ if (isset($_POST['submit'])) {
     $is_success = $crud->insert_user($username, $email, $password);
 
     if ($is_success) {
-        echo 'you have been registered';
+        echo '<script>alert("You have been registered.");window.location.href = "index.php";</script>';
     } else {
-        echo 'there was some error';
+        echo '<script>alert("Your form is not correct. Please try again.");window.location.href = "sign_up.php";</script>';
     }
 } else {
-    echo 'submit not set :(';
+    echo '<script>alert("Some error on server side... :(.");window.location.href = "log_in.php";</script>';
 }
 ?>
 

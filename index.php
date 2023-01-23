@@ -14,6 +14,7 @@ $login_button = '<a href="log_in.php">
 $signup_button = '<a href="sign_up.php">
                     <button class="signup-button">   Sign Up   </button>
                   </a>';
+$products = $crud->get_all_products();
 
 session_start();
 
@@ -48,71 +49,55 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
 
 <hr>
 
-<div class="product-box">
-    <h2 class="product-name">product name</h2>
-    <div class="plot-container">
-        <div class="plot-placeholder"></div>
-    </div>
-    <div class="comments-container">
-        <h3>User Comments:</h3>
-        <div class="comments">
-            <p class="placeholder">No comments yet.</p>
+<?php
+$products = $crud->get_all_products();
+foreach ($products as $product) {
+    $product_id = $product['product_id'];
+    $product_name = $product['product_name'];
+    $measurement_unit = $product['measurements_unit'];
+    if(empty($measurement_unit)){
+        $measurement_unit = 'N/A';
+    }
+    echo '
+    <div class="product-box">
+        <h2 class="product-name">' . $product_name . '</h2>
+        <div class="plot-container">
+            <div class="plot-placeholder"></div>
         </div>
-        <form>
-            <textarea id="new-comment" placeholder="add a comment"></textarea>
-            <div class="submit-container">
-                <button type="submit">Submit</button>
-            </div>
-        </form>
-    </div>
+        <div class="comments-container">
+            <h3>User Comments:</h3>
+            <div class="comments">
+        
+    ';
+    $comments = $crud->get_comments_by_product_id($product_id);
+    if (empty($comments)) {
+        echo '<p class="placeholder">No comments yet.</p>';
+} else {
+foreach ($comments as $comment) {
+    $comment_date = $comment['comment_date'];
+    $username = $crud->get_username_by_user_id($comment['user_id']);
+    echo '<p style="text-align:left;"><span class="small-font">Comment date: '.$comment_date.' <br> Comment owner: '.$username['username'].'</span></p> <p>' . $comment['comment_text'] . '</p><hr>';
+}
+}
+echo '
 </div>
-
-
-<div class="product-box">
-    <h2 class="product-name">product name</h2>
-    <div class="plot-container">
-        <div class="plot-placeholder"></div>
-    </div>
-    <div class="comments-container">
-        <h3>User Comments:</h3>
-        <div class="comments">
-            <p class="placeholder">No comments yet.</p>
-        </div>
-        <form>
-            <textarea id="new-comment" placeholder="add a comment"></textarea>
-            <div class="submit-container">
-                <button type="submit">Submit</button>
-            </div>
-        </form>
-    </div>
 </div>
-
-<div class="product-box">
-    <h2 class="product-name">product name</h2>
-    <div class="plot-container">
-        <div class="plot-placeholder"></div>
-    </div>
-    <div class="comments-container">
-        <h3>User Comments:</h3>
-        <div class="comments">
-            <p class="placeholder">No comments yet.</p>
-        </div>
-        <form>
-            <textarea id="new-comment" placeholder="add a comment"></textarea>
-            <div class="submit-container">
-                <button type="submit">Submit</button>
-            </div>
-        </form>
-    </div>
+<form action="submit_comment.php" method="post">
+<input type="hidden" name="product_id" value="'.$product_id.'">
+<textarea id="new-comment" name="new-comment" placeholder="add a comment"></textarea>
+<div class="submit-container">
+<button type="submit">Submit</button>
 </div>
-
-
-
+</form>
+</div>
+';
+}
+?>
 <hr>
-
 <img class="rocket" src="src/rocket_right.png">
 
-
-
+<script>var loggedin = <?php echo json_encode($loggedin); ?>;</script>
 
 <?php require_once 'includes/footer.php'; ?>
+
+

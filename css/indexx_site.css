@@ -61,7 +61,13 @@ hr {
 }
 
 .comments {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    overflow: auto; /* or hidden, scroll, visible etc. */
+    height: 125px; /* you can set the height in pixels or other units */
+    background-color: #222222;
+    border-radius: 0.8em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 form {
@@ -167,6 +173,14 @@ button[type='submit']:hover {
 .header-subtitle {
     color: #ccc;
 }
+
+
+.small-font {
+    font-size: 80%;
+    margin-bottom: -10px;
+}
+
+
 
 @keyframes rocket-flight {
     0% {
